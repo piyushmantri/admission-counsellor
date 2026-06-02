@@ -109,6 +109,7 @@ interface HookContext {
   storeResult?: (data: Record<string, unknown>) => Promise<void>;
   databaseUrl?: string | null;
   geminiApiKey?: string | null;
+  geminiModel?: string | null;
 }
 
 const VALID_EXAMS = new Set<ExamName>([
@@ -197,6 +198,7 @@ export async function handleSlashCommand(
   const emitTs = ctx?.emitTimeseries ?? (() => {});
   const databaseUrl = ctx?.databaseUrl;
   const geminiApiKey = ctx?.geminiApiKey ?? null;
+  const geminiModel = ctx?.geminiModel ?? null;
 
   if (!databaseUrl) {
     emit("slash_not_configured");
@@ -214,7 +216,7 @@ export async function handleSlashCommand(
       case "set-preferences":
         return await handleSetPreferences(sql, chatId, args, emit);
       case "recommend":
-        return await handleRecommend(sql, chatId, args, emit, emitTs, geminiApiKey);
+        return await handleRecommend(sql, chatId, args, emit, emitTs, geminiApiKey, geminiModel);
       case "list-exams":
         return await handleListExams(sql, chatId, emit);
       case "clear":
@@ -425,6 +427,7 @@ async function handleRecommend(
   emit: (n: string, v?: number) => void,
   emitTs: (n: string, v: number) => void,
   geminiApiKey: string | null,
+  geminiModel: string | null,
 ): Promise<string> {
   const limitArg = parseInt(args.trim(), 10);
   const limit = Number.isFinite(limitArg) && limitArg > 0 ? Math.min(limitArg, 50) : 20;
@@ -443,7 +446,7 @@ async function handleRecommend(
   // Fetch real-time cutoffs and upsert into DB (fire-and-wait before recommend)
   if (geminiApiKey && preferredBranches.length > 0) {
     try {
-      await fetchAndUpsertRealtimeCutoffs(sql, geminiApiKey, exams, preferredBranches, currentYear);
+      await fetchAndUpsertRealtimeCutoffs(sql, geminiApiKey, exams, preferredBranches, currentYear, geminiModel ?? undefined);
       emit("realtime_fetch_ok");
     } catch {
       emit("realtime_fetch_error");

@@ -122,10 +122,11 @@ export async function fetchAndUpsertRealtimeCutoffs(
   examNames: ExamName[],
   branches: string[],
   year: number,
+  geminiModel = "gemini-2.0-flash-001",
 ): Promise<CutoffWithCollege[]> {
   const genAI = new GoogleGenerativeAI(geminiApiKey);
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
+    model: geminiModel,
     tools: [{ googleSearch: {} } as never],
   });
 
