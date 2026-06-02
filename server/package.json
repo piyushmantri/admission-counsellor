@@ -1,0 +1,11 @@
+{
+  "name": "counseller-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "start": "node ../node_modules/.bin/tsx src/index.ts"
+  }
+}

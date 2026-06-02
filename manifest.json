@@ -1,0 +1,16 @@
+{
+  "slug": "counseller",
+  "name": "Counseller",
+  "type": "code",
+  "description": "Conversational AI counselor for Indian engineering college admissions. Captures JEE/CET/BITSAT/VITEEE/KCET/AP-EAMCET/WBJEE scores and recommends colleges based on 2023-2024 cutoffs.",
+  "required_env_vars": [],
+  "system_prompt": null,
+  "knowledge_base": null,
+  "slash_commands": [
+    {"name": "add-exam", "description": "Add an exam attempt. Args: JSON {exam_name, year, marks|rank|percentile (at least one), category}"},
+    {"name": "set-preferences", "description": "Set/update preferences. Args: JSON partial {preferred_branches?, preferred_locations?, max_fees_lakhs?, tier_preference_max?, home_state?}"},
+    {"name": "recommend", "description": "Compute top college recommendations based on stored exams and preferences."},
+    {"name": "list-exams", "description": "List all stored exam attempts for this chat."},
+    {"name": "clear", "description": "Delete all stored exams and preferences for this chat (start over)."}
+  ]
+}
