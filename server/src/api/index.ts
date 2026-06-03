@@ -5,6 +5,7 @@ import { preferencesRoutes } from "./routes/preferences.js";
 import { recommendationsRoutes } from "./routes/recommendations.js";
 import { collegesRoutes } from "./routes/colleges.js";
 import { botConfigRoutes } from "./routes/botConfig.js";
+import { chatsRoutes } from "./routes/chats.js";
 
 export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // API routes FIRST (lesson 2026-05-04)
@@ -14,6 +15,7 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   await app.register(recommendationsRoutes, { prefix: "/api" });
   await app.register(collegesRoutes, { prefix: "/api" });
   await app.register(botConfigRoutes, { prefix: "/api" });
+  await app.register(chatsRoutes, { prefix: "/api" });
 
   // SPA static fallback (production only — web/dist must exist).
   // In dev, the Vite dev server serves the SPA on its own port.

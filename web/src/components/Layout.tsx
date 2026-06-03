@@ -11,6 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <aside className="w-48 bg-white border-r border-gray-200 flex flex-col p-4 gap-1">
         <h1 className="text-lg font-bold text-blue-700 mb-4">Counseller</h1>
         <NavLink to="/students" className={linkClass}>Students</NavLink>
+        <NavLink to="/chats" className={linkClass}>Chats</NavLink>
         <NavLink to="/colleges" className={linkClass}>Colleges</NavLink>
         <NavLink to="/config/bot" className={linkClass}>Bot Config</NavLink>
       </aside>

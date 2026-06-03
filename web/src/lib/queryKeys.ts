@@ -5,4 +5,6 @@ export const keys = {
   college: (id: string) => ["colleges", id] as const,
   botConfig: () => ["botConfig"] as const,
   recommendations: (chatId: string) => ["recommendations", chatId] as const,
+  chats: () => ["chats"] as const,
+  chatMessages: (chatId: string) => ["chats", chatId] as const,
 };

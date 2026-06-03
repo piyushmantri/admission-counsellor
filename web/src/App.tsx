@@ -5,6 +5,7 @@ import StudentDetail from "./pages/StudentDetail.js";
 import Colleges from "./pages/Colleges.js";
 import CollegeDetail from "./pages/CollegeDetail.js";
 import BotConfig from "./pages/BotConfig.js";
+import Chats from "./pages/Chats.js";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/colleges" element={<Colleges />} />
         <Route path="/colleges/:id" element={<CollegeDetail />} />
         <Route path="/config/bot" element={<BotConfig />} />
+        <Route path="/chats" element={<Chats />} />
       </Routes>
     </Layout>
   );
